@@ -18,8 +18,8 @@ public class CashCardJsonTest {
     public void cashCardSerializationTest() throws IOException {
         CashCard cashCard = new CashCard(99L, 123.45);
         assertThat(json.write(cashCard)).isStrictlyEqualToJson("expected.json");
-        assertThat(json.write(cashCard)).hasJsonPathNumberValue("@.id");
-        assertThat(json.write(cashCard)).extractingJsonPathNumberValue("@.id").isEqualTo(99);
+        assertThat(json.write(cashCard)).hasJsonPathNumberValue("@.ID");
+        assertThat(json.write(cashCard)).extractingJsonPathNumberValue("@.ID").isEqualTo(99);
         assertThat(json.write(cashCard)).hasJsonPathNumberValue("@.amount");
         assertThat(json.write(cashCard)).extractingJsonPathNumberValue("@.amount").isEqualTo(123.45);
     }
@@ -28,13 +28,13 @@ public class CashCardJsonTest {
     public void cashCardDeserializationTest() throws IOException {
         String expected = """
                     {
-                        "id":99,
+                        "ID":99,
                         "amount":123.45
                     }
                 """;
 
         assertThat(json.parse(expected)).isEqualTo(new CashCard(99L, 123.45));
-        assertThat(json.parseObject(expected).id()).isEqualTo(99L);
+        assertThat(json.parseObject(expected).ID()).isEqualTo(99L);
         assertThat(json.parseObject(expected).amount()).isEqualTo(123.45);
     }
 }

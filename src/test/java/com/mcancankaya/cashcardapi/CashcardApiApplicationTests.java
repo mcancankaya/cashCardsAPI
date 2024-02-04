@@ -23,7 +23,7 @@ class CashcardApiApplicationTests {
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         DocumentContext documentContext = JsonPath.parse(response.getBody());
-        Number id = documentContext.read("$.id");
+        Number id = documentContext.read("$.ID");
         assertThat(id).isEqualTo(99);
 
         // Amount test
